@@ -183,9 +183,15 @@
       const passwordInput = document.getElementById('password-input');
       const errorMessage = document.getElementById('error-message');
       const togglePassword = document.getElementById('toggle-password');
-
+      
+      // Immediately ensure password screen is visible and app is hidden
+      passwordScreen.classList.remove('hidden');
+      appContainer.classList.add('hidden');
+      
       // Clear any previous authentication to ensure password screen shows
-      localStorage.removeItem('isAuthenticated');
+      if (typeof localStorage !== 'undefined') {
+        localStorage.removeItem('isAuthenticated');
+      }
 
       // Toggle password visibility
       togglePassword.addEventListener('click', function() {
@@ -194,23 +200,15 @@
         togglePassword.textContent = type === 'password' ? '👁️' : '🔒';
       });
 
-      // Check if user is already authenticated
-      function checkAuthentication() {
-        const isAuthenticated = localStorage.getItem('isAuthenticated');
-        if (isAuthenticated === 'true') {
-          passwordScreen.classList.add('hidden');
-          appContainer.classList.remove('hidden');
-          initQuoteApp();
-        }
-      }
-
       // Handle login attempt
       function attemptLogin() {
         const enteredPassword = passwordInput.value;
         
         if (enteredPassword === correctPassword) {
           // Store authentication state
-          localStorage.setItem('isAuthenticated', 'true');
+          if (typeof localStorage !== 'undefined') {
+            localStorage.setItem('isAuthenticated', 'true');
+          }
           
           // Hide password screen, show app
           passwordScreen.classList.add('hidden');
@@ -283,16 +281,6 @@
         if (e.key === 'Enter') {
           attemptLogin();
         }
-      });
-
-      // Check authentication on page load
-      document.addEventListener('DOMContentLoaded', function() {
-        // Force the password screen to show by removing any previous authentication
-        localStorage.removeItem('isAuthenticated');
-        
-        // Make sure password screen is visible and app is hidden
-        passwordScreen.classList.remove('hidden');
-        appContainer.classList.add('hidden');
       });
     </script>
   </body>
