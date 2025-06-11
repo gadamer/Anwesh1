@@ -9,5 +9,12 @@ export default defineConfig({
       usePolling: true,
       interval: 1000
     }
+  },
+  build: {
+    rollupOptions: {
+      input: {
+        main: './index.html'
+      }
+    }
   }
 });

@@ -62,11 +62,8 @@ function setupQuoteDisplay() {
   sparkButton.addEventListener('click', displayRandomQuote);
   sparkButton.onclick = displayRandomQuote; // Backup approach
   
-  // Display an initial quote to verify functionality
-  setTimeout(() => {
-    console.log('Displaying initial quote...');
-    displayRandomQuote();
-  }, 500);
+  // Removed initial quote display
+  // No longer automatically displaying a quote on page load
   
   console.log('Quote display functionality initialized successfully');
 }
