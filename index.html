@@ -5,16 +5,72 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Inspiration Spark</title>
     <link rel="stylesheet" href="style.css" />
-    <!-- Preload the script -->
-    <link rel="preload" href="main.js" as="script">
+    <!-- Inline critical CSS for faster rendering -->
+    <style>
+      body { font-family: 'Poppins', sans-serif; }
+      .container { text-align: center; }
+      #quote-display { transition: opacity 0.3s ease; opacity: 0; }
+      #quote-display.show { opacity: 1; }
+    </style>
   </head>
   <body>
     <div class="container">
       <h1>Your Daily Dose of Inspiration!</h1>
-      <button id="spark-button" type="button" onclick="document.dispatchEvent(new Event('buttonClicked'))">Spark an Idea!</button>
+      <button id="spark-button">Spark an Idea!</button>
       <p id="quote-display"></p>
     </div>
-    <!-- Use both async and defer for maximum compatibility -->
-    <script src="main.js"></script>
+
+    <!-- Inline the JavaScript to eliminate any loading/parsing issues -->
+    <script>
+      // Quotes array
+      const quotes = [
+        "The best way to predict the future is to create it.",
+        "Innovation distinguishes between a leader and a follower.",
+        "Strive not to be a success, but rather to be of value.",
+        "The mind is everything. What you think you become.",
+        "Your time is limited, so don't waste it living someone else's life."
+      ];
+
+      // Function to display a random quote
+      function displayRandomQuote() {
+        console.log('Button clicked!');
+        const quoteDisplay = document.getElementById('quote-display');
+        
+        // Remove the show class to trigger fade out
+        quoteDisplay.classList.remove('show');
+        
+        // Wait for the fade out transition
+        setTimeout(() => {
+          // Get a random quote
+          const randomIndex = Math.floor(Math.random() * quotes.length);
+          const selectedQuote = quotes[randomIndex];
+          
+          quoteDisplay.textContent = selectedQuote;
+          
+          // Add the show class to trigger fade in
+          quoteDisplay.classList.add('show');
+        }, 300);
+      }
+
+      // Function to initialize the app
+      function initApp() {
+        const sparkButton = document.getElementById('spark-button');
+        
+        // Add click event listener
+        if (sparkButton) {
+          sparkButton.addEventListener('click', displayRandomQuote);
+          
+          // Display an initial quote
+          setTimeout(displayRandomQuote, 500);
+        }
+      }
+
+      // Initialize when DOM is loaded
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initApp);
+      } else {
+        initApp();
+      }
+    </script>
   </body>
 </html>
