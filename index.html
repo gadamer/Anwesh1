@@ -5,14 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Inspiration Spark</title>
     <link rel="stylesheet" href="style.css" />
+    <!-- Preload the script -->
+    <link rel="preload" href="main.js" as="script">
   </head>
   <body>
     <div class="container">
       <h1>Your Daily Dose of Inspiration!</h1>
-      <button id="spark-button" type="button">Spark an Idea!</button>
+      <button id="spark-button" type="button" onclick="document.dispatchEvent(new Event('buttonClicked'))">Spark an Idea!</button>
       <p id="quote-display"></p>
     </div>
-    <!-- Defer attribute ensures the script executes after HTML is parsed -->
-    <script src="main.js" defer></script>
+    <!-- Use both async and defer for maximum compatibility -->
+    <script src="main.js"></script>
   </body>
 </html>
