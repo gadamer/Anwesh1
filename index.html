@@ -11,10 +11,73 @@
       .container { text-align: center; }
       #quote-display { transition: opacity 0.3s ease; opacity: 0; }
       #quote-display.show { opacity: 1; }
+      #password-screen {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: #f9f9f9;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 100;
+      }
+      #password-container {
+        background-color: white;
+        padding: 2rem;
+        border-radius: 12px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        width: 90%;
+        max-width: 400px;
+      }
+      #password-input {
+        width: 100%;
+        padding: 10px;
+        margin: 15px 0;
+        border: 2px solid #ddd;
+        border-radius: 6px;
+        font-size: 16px;
+        font-family: 'Poppins', sans-serif;
+      }
+      #login-button {
+        background-color: #3498db;
+        color: white;
+        border: none;
+        padding: 12px 24px;
+        font-size: 1.1rem;
+        border-radius: 30px;
+        cursor: pointer;
+        font-family: 'Poppins', sans-serif;
+        font-weight: 400;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 12px rgba(52, 152, 219, 0.3);
+      }
+      #error-message {
+        color: #e74c3c;
+        margin-top: 10px;
+        font-size: 14px;
+        min-height: 20px;
+      }
+      .hidden {
+        display: none !important;
+      }
     </style>
   </head>
   <body>
-    <div class="container">
+    <!-- Password Screen -->
+    <div id="password-screen">
+      <div id="password-container">
+        <h2>Welcome to Inspiration Spark</h2>
+        <p>Please enter the password to continue</p>
+        <input type="password" id="password-input" placeholder="Enter password">
+        <p id="error-message"></p>
+        <button id="login-button">Access Inspiration</button>
+      </div>
+    </div>
+
+    <!-- Main App Content -->
+    <div class="container hidden" id="app-container">
       <h1>Your Daily Dose of Inspiration!</h1>
       <button id="spark-button">Spark an Idea!</button>
       <p id="quote-display"></p>
@@ -22,40 +85,83 @@
 
     <!-- Inline the JavaScript to eliminate any loading/parsing issues -->
     <script>
-      // Quotes array
-      const quotes = [
-        "The best way to predict the future is to create it.",
-        "Innovation distinguishes between a leader and a follower.",
-        "Strive not to be a success, but rather to be of value.",
-        "The mind is everything. What you think you become.",
-        "Your time is limited, so don't waste it living someone else's life."
-      ];
+      // Password validation
+      const correctPassword = "123456";
+      const passwordScreen = document.getElementById('password-screen');
+      const appContainer = document.getElementById('app-container');
+      const loginButton = document.getElementById('login-button');
+      const passwordInput = document.getElementById('password-input');
+      const errorMessage = document.getElementById('error-message');
 
-      // Function to display a random quote
-      function displayRandomQuote() {
-        console.log('Button clicked!');
-        const quoteDisplay = document.getElementById('quote-display');
-        
-        // Remove the show class to trigger fade out
-        quoteDisplay.classList.remove('show');
-        
-        // Wait for the fade out transition
-        setTimeout(() => {
-          // Get a random quote
-          const randomIndex = Math.floor(Math.random() * quotes.length);
-          const selectedQuote = quotes[randomIndex];
-          
-          quoteDisplay.textContent = selectedQuote;
-          
-          // Add the show class to trigger fade in
-          quoteDisplay.classList.add('show');
-        }, 300);
+      // Check if user is already authenticated
+      function checkAuthentication() {
+        const isAuthenticated = localStorage.getItem('isAuthenticated');
+        if (isAuthenticated === 'true') {
+          passwordScreen.classList.add('hidden');
+          appContainer.classList.remove('hidden');
+          initQuoteApp();
+        }
       }
 
-      // Function to initialize the app
-      function initApp() {
-        const sparkButton = document.getElementById('spark-button');
+      // Handle login attempt
+      function attemptLogin() {
+        const enteredPassword = passwordInput.value;
         
+        if (enteredPassword === correctPassword) {
+          // Store authentication state
+          localStorage.setItem('isAuthenticated', 'true');
+          
+          // Hide password screen, show app
+          passwordScreen.classList.add('hidden');
+          appContainer.classList.remove('hidden');
+          
+          // Initialize the quote app
+          initQuoteApp();
+        } else {
+          // Show error message
+          errorMessage.textContent = "Incorrect password. Please try again.";
+          passwordInput.value = "";
+          
+          // Shake effect for wrong password
+          passwordInput.style.border = "2px solid #e74c3c";
+          setTimeout(() => {
+            passwordInput.style.border = "2px solid #ddd";
+          }, 1000);
+        }
+      }
+
+      // Quotes app functionality
+      function initQuoteApp() {
+        // Quotes array
+        const quotes = [
+          "The best way to predict the future is to create it.",
+          "Innovation distinguishes between a leader and a follower.",
+          "Strive not to be a success, but rather to be of value.",
+          "The mind is everything. What you think you become.",
+          "Your time is limited, so don't waste it living someone else's life."
+        ];
+
+        const sparkButton = document.getElementById('spark-button');
+        const quoteDisplay = document.getElementById('quote-display');
+
+        // Function to display a random quote
+        function displayRandomQuote() {
+          // Remove the show class to trigger fade out
+          quoteDisplay.classList.remove('show');
+          
+          // Wait for the fade out transition
+          setTimeout(() => {
+            // Get a random quote
+            const randomIndex = Math.floor(Math.random() * quotes.length);
+            const selectedQuote = quotes[randomIndex];
+            
+            quoteDisplay.textContent = selectedQuote;
+            
+            // Add the show class to trigger fade in
+            quoteDisplay.classList.add('show');
+          }, 300);
+        }
+
         // Add click event listener
         if (sparkButton) {
           sparkButton.addEventListener('click', displayRandomQuote);
@@ -65,11 +171,19 @@
         }
       }
 
-      // Initialize when DOM is loaded
+      // Event listeners for password functionality
+      loginButton.addEventListener('click', attemptLogin);
+      passwordInput.addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+          attemptLogin();
+        }
+      });
+
+      // Check authentication on page load
       if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', initApp);
+        document.addEventListener('DOMContentLoaded', checkAuthentication);
       } else {
-        initApp();
+        checkAuthentication();
       }
     </script>
   </body>
