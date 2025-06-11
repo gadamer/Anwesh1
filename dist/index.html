@@ -5,17 +5,73 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Inspiration Spark</title>
     
-    <!-- Preload the script -->
-    <link rel="preload" href="data:application/javascript;base64,Ly8gVXNlIG11bHRpcGxlIGFwcHJvYWNoZXMgdG8gZW5zdXJlIHRoZSBzY3JpcHQgcnVucyBwcm9wZXJseQpkb2N1bWVudC5hZGRFdmVudExpc3RlbmVyKCdET01Db250ZW50TG9hZGVkJywgaW5pdGlhbGl6ZUFwcCk7CndpbmRvdy5hZGRFdmVudExpc3RlbmVyKCdsb2FkJywgaW5pdGlhbGl6ZUFwcCk7CgovLyBUcmFjayBpZiB3ZSd2ZSBhbHJlYWR5IGluaXRpYWxpemVkIHRvIHByZXZlbnQgZHVwbGljYXRlIHNldHVwCmxldCBpbml0aWFsaXplZCA9IGZhbHNlOwoKZnVuY3Rpb24gaW5pdGlhbGl6ZUFwcCgpIHsKICAvLyBPbmx5IHJ1biBvbmNlCiAgaWYgKGluaXRpYWxpemVkKSByZXR1cm47CiAgaW5pdGlhbGl6ZWQgPSB0cnVlOwogIAogIGNvbnNvbGUubG9nKCdJbml0aWFsaXppbmcgYXBwLi4uJyk7CiAgc2V0dXBRdW90ZURpc3BsYXkoKTsKfQoKLy8gRnVuY3Rpb24gdG8gc2V0IHVwIHRoZSBxdW90ZSBkaXNwbGF5IGZ1bmN0aW9uYWxpdHkKZnVuY3Rpb24gc2V0dXBRdW90ZURpc3BsYXkoKSB7CiAgY29uc3Qgc3BhcmtCdXR0b24gPSBkb2N1bWVudC5nZXRFbGVtZW50QnlJZCgnc3BhcmstYnV0dG9uJyk7CiAgY29uc3QgcXVvdGVEaXNwbGF5ID0gZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoJ3F1b3RlLWRpc3BsYXknKTsKICAKICBjb25zb2xlLmxvZygnQnV0dG9uIGVsZW1lbnQ6Jywgc3BhcmtCdXR0b24pOwogIGNvbnNvbGUubG9nKCdRdW90ZSBkaXNwbGF5IGVsZW1lbnQ6JywgcXVvdGVEaXNwbGF5KTsKICAKICBpZiAoIXNwYXJrQnV0dG9uIHx8ICFxdW90ZURpc3BsYXkpIHsKICAgIGNvbnNvbGUuZXJyb3IoJ1JlcXVpcmVkIGVsZW1lbnRzIG5vdCBmb3VuZCcpOwogICAgLy8gVHJ5IGFnYWluIGFmdGVyIGEgc2hvcnQgZGVsYXkgYXMgYSBmYWxsYmFjawogICAgc2V0VGltZW91dChzZXR1cFF1b3RlRGlzcGxheSwgMTAwKTsKICAgIHJldHVybjsKICB9CiAgCiAgY29uc3QgcXVvdGVzID0gWwogICAgIlRoZSBiZXN0IHdheSB0byBwcmVkaWN0IHRoZSBmdXR1cmUgaXMgdG8gY3JlYXRlIGl0LiIsCiAgICAiSW5ub3ZhdGlvbiBkaXN0aW5ndWlzaGVzIGJldHdlZW4gYSBsZWFkZXIgYW5kIGEgZm9sbG93ZXIuIiwKICAgICJTdHJpdmUgbm90IHRvIGJlIGEgc3VjY2VzcywgYnV0IHJhdGhlciB0byBiZSBvZiB2YWx1ZS4iLAogICAgIlRoZSBtaW5kIGlzIGV2ZXJ5dGhpbmcuIFdoYXQgeW91IHRoaW5rIHlvdSBiZWNvbWUuIiwKICAgICJZb3VyIHRpbWUgaXMgbGltaXRlZCwgc28gZG9uJ3Qgd2FzdGUgaXQgbGl2aW5nIHNvbWVvbmUgZWxzZSdzIGxpZmUuIgogIF07CiAgCiAgLy8gRnVuY3Rpb24gdG8gZGlzcGxheSBhIHJhbmRvbSBxdW90ZQogIGZ1bmN0aW9uIGRpc3BsYXlSYW5kb21RdW90ZSgpIHsKICAgIGNvbnNvbGUubG9nKCdCdXR0b24gY2xpY2tlZCEnKTsKICAgIAogICAgLy8gUmVtb3ZlIHRoZSBzaG93IGNsYXNzIHRvIHRyaWdnZXIgZmFkZSBvdXQKICAgIHF1b3RlRGlzcGxheS5jbGFzc0xpc3QucmVtb3ZlKCdzaG93Jyk7CiAgICAKICAgIC8vIFdhaXQgZm9yIHRoZSBmYWRlIG91dCB0cmFuc2l0aW9uCiAgICBzZXRUaW1lb3V0KCgpID0+IHsKICAgICAgLy8gR2V0IGEgcmFuZG9tIHF1b3RlCiAgICAgIGNvbnN0IHJhbmRvbUluZGV4ID0gTWF0aC5mbG9vcihNYXRoLnJhbmRvbSgpICogcXVvdGVzLmxlbmd0aCk7CiAgICAgIGNvbnN0IHNlbGVjdGVkUXVvdGUgPSBxdW90ZXNbcmFuZG9tSW5kZXhdOwogICAgICBjb25zb2xlLmxvZygnU2VsZWN0ZWQgcXVvdGU6Jywgc2VsZWN0ZWRRdW90ZSk7CiAgICAgIAogICAgICBxdW90ZURpc3BsYXkudGV4dENvbnRlbnQgPSBzZWxlY3RlZFF1b3RlOwogICAgICAKICAgICAgLy8gQWRkIHRoZSBzaG93IGNsYXNzIHRvIHRyaWdnZXIgZmFkZSBpbgogICAgICBxdW90ZURpc3BsYXkuY2xhc3NMaXN0LmFkZCgnc2hvdycpOwogICAgfSwgMzAwKTsKICB9CiAgCiAgLy8gQWRkIGNsaWNrIGV2ZW50IGxpc3RlbmVyIHdpdGggYm90aCBhcHByb2FjaGVzCiAgc3BhcmtCdXR0b24uYWRkRXZlbnRMaXN0ZW5lcignY2xpY2snLCBkaXNwbGF5UmFuZG9tUXVvdGUpOwogIHNwYXJrQnV0dG9uLm9uY2xpY2sgPSBkaXNwbGF5UmFuZG9tUXVvdGU7IC8vIEJhY2t1cCBhcHByb2FjaAogIAogIC8vIERpc3BsYXkgYW4gaW5pdGlhbCBxdW90ZSB0byB2ZXJpZnkgZnVuY3Rpb25hbGl0eQogIHNldFRpbWVvdXQoKCkgPT4gewogICAgY29uc29sZS5sb2coJ0Rpc3BsYXlpbmcgaW5pdGlhbCBxdW90ZS4uLicpOwogICAgZGlzcGxheVJhbmRvbVF1b3RlKCk7CiAgfSwgNTAwKTsKICAKICBjb25zb2xlLmxvZygnUXVvdGUgZGlzcGxheSBmdW5jdGlvbmFsaXR5IGluaXRpYWxpemVkIHN1Y2Nlc3NmdWxseScpOwp9CgovLyBSdW4gc2V0dXAgaW1tZWRpYXRlbHkgaWYgRE9NIGlzIGFscmVhZHkgbG9hZGVkCmlmIChkb2N1bWVudC5yZWFkeVN0YXRlID09PSAnY29tcGxldGUnIHx8IGRvY3VtZW50LnJlYWR5U3RhdGUgPT09ICdpbnRlcmFjdGl2ZScpIHsKICBjb25zb2xlLmxvZygnRE9NIGFscmVhZHkgcmVhZHksIGluaXRpYWxpemluZyBpbW1lZGlhdGVseScpOwogIHNldFRpbWVvdXQoaW5pdGlhbGl6ZUFwcCwgMCk7Cn0K" as="script">
+    <!-- Inline critical CSS for faster rendering -->
+    <style>
+      body { font-family: 'Poppins', sans-serif; }
+      .container { text-align: center; }
+      #quote-display { transition: opacity 0.3s ease; opacity: 0; }
+      #quote-display.show { opacity: 1; }
+    </style>
     <link rel="stylesheet" href="/assets/index-081cdce8.css">
   </head>
   <body>
     <div class="container">
       <h1>Your Daily Dose of Inspiration!</h1>
-      <button id="spark-button" type="button" onclick="document.dispatchEvent(new Event('buttonClicked'))">Spark an Idea!</button>
+      <button id="spark-button">Spark an Idea!</button>
       <p id="quote-display"></p>
     </div>
-    <!-- Use both async and defer for maximum compatibility -->
-    <script src="main.js"></script>
+
+    <!-- Inline the JavaScript to eliminate any loading/parsing issues -->
+    <script>
+      // Quotes array
+      const quotes = [
+        "The best way to predict the future is to create it.",
+        "Innovation distinguishes between a leader and a follower.",
+        "Strive not to be a success, but rather to be of value.",
+        "The mind is everything. What you think you become.",
+        "Your time is limited, so don't waste it living someone else's life."
+      ];
+
+      // Function to display a random quote
+      function displayRandomQuote() {
+        console.log('Button clicked!');
+        const quoteDisplay = document.getElementById('quote-display');
+        
+        // Remove the show class to trigger fade out
+        quoteDisplay.classList.remove('show');
+        
+        // Wait for the fade out transition
+        setTimeout(() => {
+          // Get a random quote
+          const randomIndex = Math.floor(Math.random() * quotes.length);
+          const selectedQuote = quotes[randomIndex];
+          
+          quoteDisplay.textContent = selectedQuote;
+          
+          // Add the show class to trigger fade in
+          quoteDisplay.classList.add('show');
+        }, 300);
+      }
+
+      // Function to initialize the app
+      function initApp() {
+        const sparkButton = document.getElementById('spark-button');
+        
+        // Add click event listener
+        if (sparkButton) {
+          sparkButton.addEventListener('click', displayRandomQuote);
+          
+          // Display an initial quote
+          setTimeout(displayRandomQuote, 500);
+        }
+      }
+
+      // Initialize when DOM is loaded
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initApp);
+      } else {
+        initApp();
+      }
+    </script>
   </body>
 </html>
